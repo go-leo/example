@@ -1,0 +1,87 @@
+server:
+  http:
+    port: 8080
+  grpc:
+    port: 9090
+    keepalive_params:
+      max_connection_age: 1m
+      max_connection_idle: 15s
+      max_connection_age_grace: 5s
+      time: 1s
+      timeout: 1s
+      min_time: 5s
+      permit_without_stream: true
+
+management:
+  port: 16060
+
+metrics:
+  enabled: true
+  exporter:
+    prometheus:
+      enabled: true
+
+logger:
+  level: debug
+
+trace:
+  enabled: true
+  jaeger:
+    enabled: true
+    url: http://localhost:8343/api/traces
+  sampler:
+    rate: 0.1
+  service_name: demo
+
+service_providers:
+  demo1:
+    transport: gRPC
+    target: localhost:9091
+redis:
+  redis1:
+    addresses:
+      - localhost:6377
+      - localhost:6378
+      - localhost:6379
+    password: 12345
+    db: 0
+    read_timeout: 20s
+  redis2:
+    addresses:
+      - localhost:6377
+      - localhost:6378
+      - localhost:6379
+    password: 12345
+    db: 2
+    read_timeout: 2s
+
+app:
+  ab:
+    category:
+      access_key: 1111111
+      access_secret: 2222222
+    category_pre:
+      access_key: 111111
+      access_secret: 2222222
+
+  uploader:
+    app_id: 1111111111
+    secret: 2222222222
+    address: http://192.168.1.2
+
+  cache:
+    class:
+      enable: true
+      timeout: 1200
+
+  sample:
+  - method: GetClass
+    sampling_rate: 0.02
+  - method: GetUser
+    sampling_rate: 0.01
+
+  white_list:
+    - 11111111
+    - 22222222
+    - 33333333
+    - 44444444
