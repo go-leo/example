@@ -57,7 +57,7 @@ func main() {
 			},
 			Routers: []httpserver.Router{
 				{
-					HTTPMethod:   http.MethodGet,
+					HTTPMethods:  []string{http.MethodGet},
 					Path:         "/time",
 					HandlerFuncs: []gin.HandlerFunc{Time},
 				},

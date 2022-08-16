@@ -43,7 +43,7 @@ func main() {
 		leo.HTTP(&leo.HttpOptions{
 			Routers: []server.Router{
 				{
-					HTTPMethod:   http.MethodGet,
+					HTTPMethods:  []string{http.MethodGet},
 					Path:         "/time",
 					HandlerFuncs: []gin.HandlerFunc{Time},
 				},

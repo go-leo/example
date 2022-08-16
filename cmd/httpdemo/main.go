@@ -37,12 +37,12 @@ func main() {
 			},
 			Routers: []httpserver.Router{
 				{
-					HTTPMethod:   http.MethodPost,
+					HTTPMethods:  []string{http.MethodPost},
 					Path:         "/register",
 					HandlerFuncs: []gin.HandlerFunc{Register},
 				},
 				{
-					HTTPMethod:   http.MethodPost,
+					HTTPMethods:  []string{http.MethodPost},
 					Path:         "/login",
 					HandlerFuncs: []gin.HandlerFunc{Login},
 				},
