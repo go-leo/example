@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"time"
 
 	"github.com/go-leo/leo"
 	"google.golang.org/grpc"
@@ -18,23 +17,14 @@ func main() {
 	logger := zap.New(zap.LevelAdapt(log.Debug), zap.Console(true), zap.JSON())
 	// 初始化app
 	app := leo.NewApp(
-		leo.Name("grpcdemo"),
-		leo.Logger(logger),
-		leo.Service(helloworld.GreeterServiceDesc(new(GreeterService))),
+		leo.Name("grpcdemo"), // 服务名
+		leo.Logger(logger),   // 日志组件
+		leo.Service(helloworld.GreeterServiceDesc(new(GreeterService))), // 服务
 		leo.GRPC(&leo.GRPCOptions{
-			Port: 9090,
-			UnaryServerInterceptors: []grpc.UnaryServerInterceptor{
-				func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
-					ctx, cancelFunc := context.WithTimeout(ctx, time.Second)
-					defer cancelFunc()
-					return handler(ctx, req)
-				},
-			},
-			TLSConf:           nil,
-			GRPCServerOptions: []grpc.ServerOption{},
-		}),
-		leo.Management(&leo.ManagementOptions{
-			Port: 16060,
+			Port:                    9090,                            // grpc端口号
+			UnaryServerInterceptors: []grpc.UnaryServerInterceptor{}, // grpc 拦截器
+			TLSConf:                 nil,                             // tls 配置
+			GRPCServerOptions:       []grpc.ServerOption{},           // grpc其他服务参数
 		}),
 	)
 	// 运行app
