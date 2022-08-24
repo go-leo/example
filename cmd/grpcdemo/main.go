@@ -2,15 +2,13 @@ package main
 
 import (
 	"context"
+	"time"
 
 	"github.com/go-leo/leo"
 	"google.golang.org/grpc"
 
 	"github.com/go-leo/leo/log"
 	"github.com/go-leo/leo/log/zap"
-	middlewarecontext "github.com/go-leo/leo/middleware/context"
-	middlewarelog "github.com/go-leo/leo/middleware/log"
-	"github.com/go-leo/leo/middleware/requestid"
 
 	"github.com/go-leo/example/api/helloworld"
 )
@@ -20,19 +18,20 @@ func main() {
 	logger := zap.New(zap.LevelAdapt(log.Debug), zap.Console(true), zap.JSON())
 	// 初始化app
 	app := leo.NewApp(
-		leo.Service(helloworld.GreeterServiceDesc(new(GreeterService))),
 		leo.Name("grpcdemo"),
 		leo.Logger(logger),
+		leo.Service(helloworld.GreeterServiceDesc(new(GreeterService))),
 		leo.GRPC(&leo.GRPCOptions{
 			Port: 9090,
 			UnaryServerInterceptors: []grpc.UnaryServerInterceptor{
-				requestid.GRPCServerMiddleware(),
-				middlewarecontext.GRPCServerMiddleware(func(ctx context.Context) context.Context {
-					traceID, _ := requestid.FromContext(ctx)
-					return log.NewContext(ctx, logger.Clone().With(log.F{K: "TraceID", V: traceID}))
-				}),
-				middlewarelog.GRPCServerMiddleware(func(ctx context.Context) log.Logger { return log.FromContextOrDiscard(ctx) }),
+				func(ctx context.Context, req interface{}, info *grpc.UnaryServerInfo, handler grpc.UnaryHandler) (resp interface{}, err error) {
+					ctx, cancelFunc := context.WithTimeout(ctx, time.Second)
+					defer cancelFunc()
+					return handler(ctx, req)
+				},
 			},
+			TLSConf:           nil,
+			GRPCServerOptions: []grpc.ServerOption{},
 		}),
 		leo.Management(&leo.ManagementOptions{
 			Port: 16060,

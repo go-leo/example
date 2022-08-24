@@ -7,7 +7,7 @@ require (
 	github.com/ThreeDotsLabs/watermill v1.2.0-rc.11
 	github.com/ThreeDotsLabs/watermill-kafka/v2 v2.2.2
 	github.com/gin-gonic/gin v1.8.1
-	github.com/go-leo/leo v1.0.7
+	github.com/go-leo/leo v1.0.8
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/shirou/gopsutil/v3 v3.22.7
 	google.golang.org/grpc v1.48.0
@@ -15,6 +15,7 @@ require (
 )
 
 require (
+	cloud.google.com/go/compute v1.7.0 // indirect
 	github.com/BurntSushi/toml v1.2.0 // indirect
 	github.com/aliyun/alibaba-cloud-sdk-go v1.61.1723 // indirect
 	github.com/armon/go-metrics v0.4.0 // indirect
@@ -28,6 +29,7 @@ require (
 	github.com/eapache/go-xerial-snappy v0.0.0-20180814174437-776d5712da21 // indirect
 	github.com/eapache/queue v1.1.0 // indirect
 	github.com/fatih/color v1.13.0 // indirect
+	github.com/felixge/httpsnoop v1.0.3 // indirect
 	github.com/fsnotify/fsnotify v1.5.4 // indirect
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-errors/errors v1.4.2 // indirect
@@ -88,6 +90,9 @@ require (
 	github.com/ugorji/go/codec v1.2.7 // indirect
 	github.com/yusufpapurcu/wmi v1.2.2 // indirect
 	go.opentelemetry.io/contrib/instrumentation/github.com/Shopify/sarama/otelsarama v0.31.0 // indirect
+	go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin v0.32.0 // indirect
+	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.32.0 // indirect
+	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.32.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/runtime v0.34.0 // indirect
 	go.opentelemetry.io/otel v1.9.0 // indirect
 	go.opentelemetry.io/otel/exporters/jaeger v1.9.0 // indirect
