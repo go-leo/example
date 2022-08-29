@@ -8,9 +8,3 @@ protoc \
   --go-leo_out=. \
   --go-leo_opt=module=github.com/go-leo/example \
   api/*/*.proto
-
-wire ./cmd/helloworld
-
-wire ./cmd/useconfig
-
-wire ./cmd/useregistry
