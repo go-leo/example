@@ -2,55 +2,34 @@ package main
 
 import (
 	"context"
-	"net/http"
+	"errors"
+	"fmt"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-leo/gors"
+	"github.com/go-leo/leo/v2"
+	leohttp "github.com/go-leo/leo/v2/http"
+	"github.com/go-leo/leo/v2/log"
+	"github.com/go-leo/leo/v2/log/zap"
+	"github.com/go-leo/stringx"
 
-	"github.com/go-leo/leo"
-	"github.com/go-leo/leo/common/stringx"
-	"github.com/go-leo/leo/log"
-	"github.com/go-leo/leo/log/zap"
-	middlewarecontext "github.com/go-leo/leo/middleware/context"
-	middlewarelog "github.com/go-leo/leo/middleware/log"
-	"github.com/go-leo/leo/middleware/requestid"
-	httpserver "github.com/go-leo/leo/runner/net/http/server"
+	"github.com/go-leo/example/v2/api/account"
 )
 
 func main() {
 	ctx := context.Background()
 	logger := zap.New(zap.LevelAdapt(log.Debug), zap.Console(true), zap.JSON())
 	// 初始化app
+	engine := gors.AppendRoutes(gin.New(), account.AccountServerRoutes(new(AccountService))...)
+	httpSrv, err := leohttp.NewServer(8080, engine)
+	if err != nil {
+		panic(err)
+	}
 	app := leo.NewApp(
 		leo.Name("httpdemo"),
 		// 日志打印
 		leo.Logger(logger),
-		leo.HTTP(&leo.HttpOptions{
-			Port: 8080,
-			// 全局中间件
-			GinMiddlewares: []gin.HandlerFunc{
-				requestid.GinMiddleware(),
-				middlewarecontext.GinMiddleware(func(ctx context.Context) context.Context {
-					traceID, _ := requestid.FromContext(ctx)
-					return log.NewContext(ctx, logger.Clone().With(log.F{K: "TraceID", V: traceID}))
-				}),
-				middlewarelog.GinMiddleware(func(ctx context.Context) log.Logger { return log.FromContextOrDiscard(ctx) }),
-			},
-			Routers: []httpserver.Router{
-				{
-					HTTPMethods:  []string{http.MethodPost},
-					Path:         "/register",
-					HandlerFuncs: []gin.HandlerFunc{Register},
-				},
-				{
-					HTTPMethods:  []string{http.MethodPost},
-					Path:         "/login",
-					HandlerFuncs: []gin.HandlerFunc{Login},
-				},
-			},
-		}),
-		leo.Management(&leo.ManagementOptions{
-			Port: 16060,
-		}),
+		leo.HTTP(httpSrv),
 	)
 	// 运行app
 	if err := app.Run(ctx); err != nil {
@@ -65,43 +44,33 @@ type User struct {
 	Password string `json:"password,omitempty"`
 }
 
-func Register(c *gin.Context) {
-	u := new(User)
-	err := c.BindJSON(u)
-	if err != nil {
-		_ = c.Error(err)
-	}
+type AccountService struct{}
+
+func (a *AccountService) Register(ctx context.Context, u *account.User) (*account.Empty, error) {
 	if stringx.IsBlank(u.Username) || stringx.IsBlank(u.Password) {
-		c.String(http.StatusBadRequest, "username or password is blank")
-		return
+		return nil, errors.New("username or password is blank")
 	}
 	_, ok := users[u.Username]
 	if ok {
-		c.String(http.StatusBadRequest, "%s has exist")
-		return
+		return nil, fmt.Errorf("%s exist", u.Username)
 	}
-	users[u.Username] = u
-	c.String(http.StatusOK, "register success")
+	users[u.Username] = &User{
+		Username: u.Username,
+		Password: u.Password,
+	}
+	return &account.Empty{}, nil
 }
 
-func Login(c *gin.Context) {
-	u := new(User)
-	err := c.BindJSON(u)
-	if err != nil {
-		_ = c.Error(err)
-	}
+func (a *AccountService) Login(ctx context.Context, u *account.User) (*account.Empty, error) {
 	if stringx.IsBlank(u.Username) || stringx.IsBlank(u.Password) {
-		c.String(http.StatusBadRequest, "username or password is blank")
-		return
+		return nil, errors.New("username or password is blank")
 	}
 	user, ok := users[u.Username]
 	if !ok {
-		c.String(http.StatusBadRequest, "%s not exist", u.Username)
-		return
+		return nil, fmt.Errorf("%s not exist", u.Username)
 	}
 	if user.Password != u.Password {
-		c.String(http.StatusBadRequest, "password not right")
-		return
+		return nil, errors.New("password not right")
 	}
-	c.String(http.StatusOK, "register success")
+	return &account.Empty{}, nil
 }

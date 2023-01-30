@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/go-leo/leo/config"
-	"github.com/go-leo/leo/config/medium/file"
-	"github.com/go-leo/leo/config/parser"
-	"github.com/go-leo/leo/config/valuer"
+	"github.com/go-leo/leo/v2/config"
+	"github.com/go-leo/leo/v2/config/medium/file"
+	"github.com/go-leo/leo/v2/config/parser"
+	"github.com/go-leo/leo/v2/config/valuer"
 )
 
 func main() {

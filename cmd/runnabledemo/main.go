@@ -9,11 +9,11 @@ import (
 
 	"github.com/shirou/gopsutil/v3/cpu"
 
-	"github.com/go-leo/leo"
-	"github.com/go-leo/leo/global"
-	"github.com/go-leo/leo/log"
-	"github.com/go-leo/leo/log/zap"
-	"github.com/go-leo/leo/runner"
+	"github.com/go-leo/leo/v2"
+	"github.com/go-leo/leo/v2/global"
+	"github.com/go-leo/leo/v2/log"
+	"github.com/go-leo/leo/v2/log/zap"
+	"github.com/go-leo/leo/v2/runner"
 )
 
 func main() {
@@ -56,7 +56,7 @@ func (h *RunnableDemo) Start(ctx context.Context) error {
 		select {
 		case <-h.exitC:
 			ticker.Stop()
-			return nil
+			return h.w.Close()
 		case t := <-ticker.C:
 			percent, err := cpu.Percent(time.Second, true)
 			if err != nil {
@@ -71,5 +71,5 @@ func (h *RunnableDemo) Start(ctx context.Context) error {
 
 func (h *RunnableDemo) Stop(ctx context.Context) error {
 	close(h.exitC)
-	return h.w.Close()
+	return nil
 }

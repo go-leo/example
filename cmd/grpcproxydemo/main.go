@@ -2,40 +2,35 @@ package main
 
 import (
 	"context"
-	"net/url"
+	"net/http"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/go-leo/grpcproxy"
 	"github.com/go-leo/leo/v2"
-	"github.com/go-leo/leo/v2/global"
-	leogrpc "github.com/go-leo/leo/v2/grpc"
+	"github.com/go-leo/leo/v2/grpc"
 	leohttp "github.com/go-leo/leo/v2/http"
 	"github.com/go-leo/leo/v2/log"
 	"github.com/go-leo/leo/v2/log/zap"
-	"github.com/go-leo/leo/v2/registry/factory"
 	googlegrpc "google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
 	"github.com/go-leo/example/v2/api/helloworld"
 )
 
-var APPVersion string
-
 func main() {
 	ctx := context.Background()
-	logger := zap.New(zap.LevelAdapt(log.Debug), zap.Console(true), zap.PlainText())
-	global.SetLogger(logger)
-	uri, err := url.Parse("consul://localhost:8500?health_check_path=/health/check")
-	if err != nil {
-		panic(err)
-	}
-	registrar, err := factory.NewRegistrar(uri)
-	if err != nil {
-		panic(err)
-	}
+	logger := zap.New(zap.LevelAdapt(log.Debug), zap.Console(true), zap.JSON())
 
-	services := []leogrpc.Service{{Impl: new(GreeterService), Desc: helloworld.Greeter_ServiceDesc}}
-	grpcSrv, err := leogrpc.NewServer(0, services, leogrpc.Registrar(registrar))
+	grpcSrv, err := grpc.NewServer(
+		9090,
+		[]grpc.Service{
+			{
+				Impl: new(GreeterService),
+				Desc: helloworld.Greeter_ServiceDesc,
+			},
+		},
+	)
 	if err != nil {
 		panic(err)
 	}
@@ -48,7 +43,7 @@ func main() {
 	defer conn.Close()
 
 	engine := grpcproxy.AppendRoutes(gin.New(), helloworld.GreeterProxyRoutes(helloworld.NewGreeterClient(conn))...)
-	httpSrv, err := leohttp.NewServer(0, engine, leohttp.Registrar(registrar))
+	httpSrv, err := leohttp.NewServer(8080, engine)
 	if err != nil {
 		panic(err)
 	}
@@ -59,10 +54,14 @@ func main() {
 		leo.GRPC(grpcSrv),
 		leo.HTTP(httpSrv),
 	)
-	err = app.Run(ctx)
-	if err != nil {
+	// 运行app
+	if err := app.Run(ctx); err != nil {
 		panic(err)
 	}
+}
+
+func Time(c *gin.Context) {
+	c.String(http.StatusOK, time.Now().Format(time.RFC3339))
 }
 
 type GreeterService struct {
@@ -70,6 +69,5 @@ type GreeterService struct {
 }
 
 func (ctrl *GreeterService) SayHello(ctx context.Context, request *helloworld.HelloRequest) (*helloworld.HelloReply, error) {
-	global.Logger().Info("hello " + request.GetName())
 	return &helloworld.HelloReply{Message: "hello " + request.GetName()}, nil
 }

@@ -3,15 +3,13 @@ package main
 import (
 	"context"
 
-	"github.com/robfig/cron/v3"
+	"github.com/go-leo/leo/v2"
+	"github.com/go-leo/leo/v2/cron"
 
-	"github.com/go-leo/leo"
-	"github.com/go-leo/leo/global"
-	"github.com/go-leo/leo/log"
-	"github.com/go-leo/leo/log/zap"
-	cronmiddleware "github.com/go-leo/leo/middleware/cron"
-	"github.com/go-leo/leo/middleware/recovery"
-	crontask "github.com/go-leo/leo/runner/task/cron"
+	"github.com/go-leo/leo/v2/global"
+	"github.com/go-leo/leo/v2/log"
+	"github.com/go-leo/leo/v2/log/zap"
+	cronmiddleware "github.com/go-leo/leo/v2/middleware/cron"
 )
 
 func main() {
@@ -22,13 +20,13 @@ func main() {
 		leo.Name("crondemo"),
 		// 日志打印
 		leo.Logger(global.Logger()),
-		leo.Cron(&leo.CronOptions{
-			Jobs: []*crontask.Job{Print()},
-			Middlewares: []cron.JobWrapper{
-				recovery.CronMiddleware(global.Logger().Clone()),
-				cronmiddleware.SkipIfStillRunning(global.Logger().Clone()),
-			},
-		}),
+		leo.Cron(
+			cron.New([]*cron.Job{Print()},
+				cron.Middleware(
+					cronmiddleware.CronMiddleware(global.Logger().Clone()),
+					cronmiddleware.SkipIfStillRunning(global.Logger().Clone()),
+				)),
+		),
 	)
 	// 运行app
 	if err := app.Run(ctx); err != nil {
@@ -36,8 +34,8 @@ func main() {
 	}
 }
 
-func Print() *crontask.Job {
-	return crontask.NewJob("print", "@every 5s", func() {
+func Print() *cron.Job {
+	return cron.NewJob("print", "@every 5s", func() {
 		global.Logger().Info("this is from cron")
 	})
 }

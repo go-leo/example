@@ -5,12 +5,11 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/go-leo/leo/middleware/requestid"
-	"github.com/go-leo/leo/middleware/trace"
+	"github.com/go-leo/leo/v2/middleware/trace"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/go-leo/example/api/helloworld"
+	"github.com/go-leo/example/v2/api/helloworld"
 )
 
 type A int
@@ -27,7 +26,10 @@ func main() {
 			grpc.MaxCallRecvMsgSize(1024*1024),
 			grpc.MaxCallSendMsgSize(1024*1024),
 		),
-		grpc.WithChainUnaryInterceptor(trace.GRPCClientMiddleware(), requestid.GRPCClientMiddleware()),
+		grpc.WithChainUnaryInterceptor(
+			trace.GRPCClientMiddleware(),
+			//requestid.GRPCClientMiddleware(),
+		),
 	}
 	clientConn, err := grpc.DialContext(ctx, "localhost:9090", dialOptions...)
 	if err != nil {

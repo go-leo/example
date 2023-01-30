@@ -4,15 +4,15 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/go-leo/leo/log"
-	"github.com/go-leo/leo/log/zap"
-	middlewarelog "github.com/go-leo/leo/middleware/log"
-	"github.com/go-leo/leo/registry/factory"
-	"github.com/go-leo/leo/runner/net/grpc/client"
-	"google.golang.org/grpc"
+	leogrpc "github.com/go-leo/leo/v2/grpc"
+	"github.com/go-leo/leo/v2/log"
+	"github.com/go-leo/leo/v2/log/zap"
+	middlewarelog "github.com/go-leo/leo/v2/middleware/log"
+	"github.com/go-leo/leo/v2/registry/factory"
+	googlegprc "google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	"github.com/go-leo/example/api/helloworld"
+	"github.com/go-leo/example/v2/api/helloworld"
 )
 
 var APPVersion string
@@ -20,25 +20,25 @@ var APPVersion string
 func main() {
 	ctx := context.Background()
 	logger := zap.New(zap.LevelAdapt(log.Debug), zap.Console(true), zap.PlainText())
-	target := "consul://localhost:8500/registrydemo"
+	target := "consul://localhost:8500/grpcproxydemo"
 	uri, err := url.Parse(target)
 	if err != nil {
 		panic(err)
 	}
-	chain := []grpc.UnaryClientInterceptor{
+	chain := []googlegprc.UnaryClientInterceptor{
 		middlewarelog.GRPCClientMiddleware(func(ctx context.Context) log.Logger {
 			return logger.Clone()
 		}),
 	}
 	discovery, _ := factory.NewDiscovery(uri)
-	dialOptions := []grpc.DialOption{
-		grpc.WithResolvers(client.NewResolverBuilder(discovery)),
-		grpc.WithDefaultServiceConfig(`{"loadBalancingConfig": [{"round_robin":{}}]}`),
-		grpc.WithTransportCredentials(insecure.NewCredentials()),
-		grpc.WithChainUnaryInterceptor(chain...),
+	dialOptions := []googlegprc.DialOption{
+		googlegprc.WithResolvers(leogrpc.NewResolverBuilder(discovery)),
+		googlegprc.WithDefaultServiceConfig(`{"loadBalancingConfig": [{"round_robin":{}}]}`),
+		googlegprc.WithTransportCredentials(insecure.NewCredentials()),
+		googlegprc.WithChainUnaryInterceptor(chain...),
 	}
 
-	cc, err := grpc.DialContext(ctx, target, dialOptions...)
+	cc, err := googlegprc.DialContext(ctx, target, dialOptions...)
 	if err != nil {
 		panic(err)
 	}

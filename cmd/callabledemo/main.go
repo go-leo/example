@@ -4,11 +4,11 @@ import (
 	"context"
 	"time"
 
-	"github.com/go-leo/leo"
-	"github.com/go-leo/leo/global"
-	"github.com/go-leo/leo/log"
-	"github.com/go-leo/leo/log/zap"
-	"github.com/go-leo/leo/runner"
+	"github.com/go-leo/leo/v2"
+	"github.com/go-leo/leo/v2/global"
+	"github.com/go-leo/leo/v2/log"
+	"github.com/go-leo/leo/v2/log/zap"
+	"github.com/go-leo/leo/v2/runner"
 )
 
 func main() {

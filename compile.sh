@@ -5,6 +5,6 @@ protoc \
   --go_opt=module=github.com/go-leo/example \
   --go-grpc_out=. \
   --go-grpc_opt=module=github.com/go-leo/example \
-  --go-leo_out=. \
-  --go-leo_opt=module=github.com/go-leo/example \
+  --go-grpcproxy_out=. \
+  --go-grpcproxy_opt=module=github.com/go-leo/example \
   api/*/*.proto

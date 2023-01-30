@@ -1,5 +1,5 @@
 syntax = "proto3";
-option go_package = "github.com/go-leo/example/api/helloworld;helloworld";
+option go_package = "github.com/go-leo/example/v2/api/helloworld;helloworld";
 package helloworld;
 service Greeter {
   rpc SayHello (HelloRequest) returns (HelloReply) {}
