@@ -9,14 +9,12 @@ require (
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-leo/gors v1.1.2
 	github.com/go-leo/grpcproxy v1.0.0
-	github.com/go-leo/leo/v2 v2.0.0-20221228090352-d4e4de599c36
+	github.com/go-leo/leo/v2 v2.0.0-20230130072309-316a226751a8
 	github.com/go-leo/stringx v1.0.1
 	github.com/shirou/gopsutil/v3 v3.22.7
 	google.golang.org/grpc v1.51.0
 	google.golang.org/protobuf v1.28.1
 )
-
-replace github.com/go-leo/leo/v2 v2.0.0-20221228090352-d4e4de599c36 => /Users/songyancheng/Workspace/github/go-leo/leo
 
 require (
 	github.com/BurntSushi/toml v1.2.0 // indirect
