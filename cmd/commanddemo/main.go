@@ -27,7 +27,9 @@ func main() {
 			return nil
 		},
 	}
-	command := cobra.New(root, version)
+	root.AddCommand(version)
+	command := cobra.New(root)
+
 	app := leo.NewApp(
 		leo.Name("cobrademo"),
 		// 日志打印

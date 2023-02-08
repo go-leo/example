@@ -9,7 +9,7 @@ require (
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-leo/gors v1.1.2
 	github.com/go-leo/grpcproxy v1.0.0
-	github.com/go-leo/leo/v2 v2.0.0-20230208053630-f4706fad9117
+	github.com/go-leo/leo/v2 v2.0.0-20230208055902-47b2bdb238e5
 	github.com/go-leo/stringx v1.0.1
 	github.com/shirou/gopsutil/v3 v3.22.7
 	github.com/spf13/cobra v1.6.1
