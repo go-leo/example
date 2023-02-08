@@ -9,9 +9,10 @@ require (
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-leo/gors v1.1.2
 	github.com/go-leo/grpcproxy v1.0.0
-	github.com/go-leo/leo/v2 v2.0.0-20230130072309-316a226751a8
+	github.com/go-leo/leo/v2 v2.0.0-20230208053630-f4706fad9117
 	github.com/go-leo/stringx v1.0.1
 	github.com/shirou/gopsutil/v3 v3.22.7
+	github.com/spf13/cobra v1.6.1
 	google.golang.org/grpc v1.51.0
 	google.golang.org/protobuf v1.28.1
 )
@@ -60,6 +61,7 @@ require (
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/hashicorp/golang-lru v0.5.4 // indirect
 	github.com/hashicorp/serf v0.9.8 // indirect
+	github.com/inconshreveable/mousetrap v1.0.1 // indirect
 	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
 	github.com/jcmturner/dnsutils/v2 v2.0.0 // indirect
 	github.com/jcmturner/gofork v1.7.6 // indirect
@@ -92,6 +94,7 @@ require (
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
+	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/tklauser/go-sysconf v0.3.10 // indirect
 	github.com/tklauser/numcpus v0.5.0 // indirect
 	github.com/ugorji/go/codec v1.2.7 // indirect
