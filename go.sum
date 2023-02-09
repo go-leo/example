@@ -149,10 +149,16 @@ github.com/go-leo/leo-cobra v0.0.0-20230209061215-8355efc94353 h1:M7yyQtSXc/bt3K
 github.com/go-leo/leo-cobra v0.0.0-20230209061215-8355efc94353/go.mod h1:S/xRqUtdd0/lCbacqhoRYz6TD4VS9llh1IzzdZzrnEA=
 github.com/go-leo/leo-cobra v0.0.0-20230209061620-866cb95c82f3 h1:rWH9qOz+ORdCD3dEULGmul6w1vRTaWjjHPe8El6XR7U=
 github.com/go-leo/leo-cobra v0.0.0-20230209061620-866cb95c82f3/go.mod h1:S/xRqUtdd0/lCbacqhoRYz6TD4VS9llh1IzzdZzrnEA=
+github.com/go-leo/leo-cron v0.0.0-20230209062518-59a758af65a1 h1:opOAKf1glSHZpVVAoZCRxl9BKTvE8uUevcT30o0hX4E=
+github.com/go-leo/leo-cron v0.0.0-20230209062518-59a758af65a1/go.mod h1:/lXW4TXEjWKbJrGahw0Mo1sn8/phyt4UmJNC14Dlw6o=
+github.com/go-leo/leo-cron v0.0.0-20230209062849-4cac9ad13f12 h1:Cfv9FVvaHtkOJ4UQyKuftl4y46epaJo1XfqYxXUBFO4=
+github.com/go-leo/leo-cron v0.0.0-20230209062849-4cac9ad13f12/go.mod h1:aY8vEBLkkanyh31BqAR+LxiAozjzXPueLvlstNIE3tU=
 github.com/go-leo/leo/v2 v2.0.0-20230208053630-f4706fad9117 h1:fEEXEzEniyjzaTrSZ0URIMnFCMwr5BvpRd85LuA/eNs=
 github.com/go-leo/leo/v2 v2.0.0-20230208053630-f4706fad9117/go.mod h1:AvlUYiIIcG8VAnMsQV50MIaGB1pWd1zF5gyDSRO+nw8=
 github.com/go-leo/leo/v2 v2.0.0-20230208055902-47b2bdb238e5 h1:nRYBkBrMPw/Hyuqu9/d0AUwgK0Ht7JsywHouAc7jmc4=
 github.com/go-leo/leo/v2 v2.0.0-20230208055902-47b2bdb238e5/go.mod h1:AvlUYiIIcG8VAnMsQV50MIaGB1pWd1zF5gyDSRO+nw8=
+github.com/go-leo/leo/v2 v2.0.0-20230209062037-c32b3a068077 h1:w4u/eSjWfsd4uIM7/ttW4Hyxg9p17ZSkw0f8zj8/iXg=
+github.com/go-leo/leo/v2 v2.0.0-20230209062037-c32b3a068077/go.mod h1:AvlUYiIIcG8VAnMsQV50MIaGB1pWd1zF5gyDSRO+nw8=
 github.com/go-leo/netx v1.1.1 h1:EK2Xu3Akcnx7zgjXlXermw2lFVnZfxDsdXwzTQ02s+g=
 github.com/go-leo/netx v1.1.1/go.mod h1:tmHTKEAGbG93OPbRaM6j4MSKadVXiG106UtD75JwIhI=
 github.com/go-leo/osx v1.1.0 h1:uSyhVjnox72hc5d65XRYFjWFJJlRgKOa1O0vSAiXdAc=

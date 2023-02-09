@@ -9,7 +9,7 @@ require (
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-leo/gors v1.1.2
 	github.com/go-leo/grpcproxy v1.0.0
-	github.com/go-leo/leo/v2 v2.0.0-20230208055902-47b2bdb238e5
+	github.com/go-leo/leo/v2 v2.0.0-20230209062037-c32b3a068077
 	github.com/go-leo/stringx v1.0.1
 	github.com/shirou/gopsutil/v3 v3.22.7
 	github.com/spf13/cobra v1.6.1
@@ -37,6 +37,7 @@ require (
 	github.com/go-leo/backoffx v1.0.0 // indirect
 	github.com/go-leo/errorx v1.0.0 // indirect
 	github.com/go-leo/leo-cobra v0.0.0-20230209061620-866cb95c82f3 // indirect
+	github.com/go-leo/leo-cron v0.0.0-20230209062849-4cac9ad13f12 // indirect
 	github.com/go-leo/netx v1.1.1 // indirect
 	github.com/go-leo/osx v1.1.0 // indirect
 	github.com/go-leo/slicex v1.0.14 // indirect
