@@ -36,6 +36,7 @@ require (
 	github.com/go-errors/errors v1.4.2 // indirect
 	github.com/go-leo/backoffx v1.0.0 // indirect
 	github.com/go-leo/errorx v1.0.0 // indirect
+	github.com/go-leo/leo-cobra v0.0.0-20230209061620-866cb95c82f3 // indirect
 	github.com/go-leo/netx v1.1.1 // indirect
 	github.com/go-leo/osx v1.1.0 // indirect
 	github.com/go-leo/slicex v1.0.14 // indirect

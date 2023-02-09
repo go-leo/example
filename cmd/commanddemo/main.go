@@ -4,8 +4,8 @@ import (
 	"context"
 	"fmt"
 
+	leo_cobra "github.com/go-leo/leo-cobra"
 	"github.com/go-leo/leo/v2"
-	"github.com/go-leo/leo/v2/cobra"
 	"github.com/go-leo/leo/v2/global"
 	spf13cobra "github.com/spf13/cobra"
 )
@@ -28,13 +28,13 @@ func main() {
 		},
 	}
 	root.AddCommand(version)
-	command := cobra.New(root)
+	command := leo_cobra.New(root)
 
 	app := leo.NewApp(
 		leo.Name("cobrademo"),
 		// 日志打印
 		leo.Logger(global.Logger()),
-		leo.Command(command),
+		leo.Callable(command),
 	)
 	// 运行app
 	if err := app.Run(context.Background()); err != nil {
