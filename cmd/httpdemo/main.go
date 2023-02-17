@@ -5,10 +5,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/gin-gonic/gin"
+	gonicgin "github.com/gin-gonic/gin"
+	"github.com/go-leo/gin"
 	"github.com/go-leo/gors"
 	"github.com/go-leo/leo/v2"
-	leohttp "github.com/go-leo/leo/v2/http"
 	"github.com/go-leo/leo/v2/log"
 	"github.com/go-leo/leo/v2/log/zap"
 	"github.com/go-leo/stringx"
@@ -20,8 +20,8 @@ func main() {
 	ctx := context.Background()
 	logger := zap.New(zap.LevelAdapt(log.Debug), zap.Console(true), zap.JSON())
 	// 初始化app
-	engine := gors.AppendRoutes(gin.New(), account.AccountServerRoutes(new(AccountService))...)
-	httpSrv, err := leohttp.NewServer(8080, engine)
+	engine := gors.AppendRoutes(gonicgin.New(), account.AccountServerRoutes(new(AccountService))...)
+	httpSrv, err := gin.NewServer(8080, engine)
 	if err != nil {
 		panic(err)
 	}
@@ -29,7 +29,7 @@ func main() {
 		leo.Name("httpdemo"),
 		// 日志打印
 		leo.Logger(logger),
-		leo.HTTP(httpSrv),
+		leo.Runnable(httpSrv),
 	)
 	// 运行app
 	if err := app.Run(ctx); err != nil {

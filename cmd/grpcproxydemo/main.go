@@ -5,11 +5,11 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/gin-gonic/gin"
+	gonicgin "github.com/gin-gonic/gin"
+	"github.com/go-leo/gin"
 	"github.com/go-leo/grpc"
 	"github.com/go-leo/grpcproxy"
 	"github.com/go-leo/leo/v2"
-	leohttp "github.com/go-leo/leo/v2/http"
 	"github.com/go-leo/leo/v2/log"
 	"github.com/go-leo/leo/v2/log/zap"
 	googlegrpc "google.golang.org/grpc"
@@ -42,8 +42,8 @@ func main() {
 	}
 	defer conn.Close()
 
-	engine := grpcproxy.AppendRoutes(gin.New(), helloworld.GreeterProxyRoutes(helloworld.NewGreeterClient(conn))...)
-	httpSrv, err := leohttp.NewServer(8080, engine)
+	engine := grpcproxy.AppendRoutes(gonicgin.New(), helloworld.GreeterProxyRoutes(helloworld.NewGreeterClient(conn))...)
+	httpSrv, err := gin.NewServer(8080, engine)
 	if err != nil {
 		panic(err)
 	}
@@ -52,7 +52,7 @@ func main() {
 		leo.Name("grpcproxydemo"),
 		leo.Logger(logger),
 		leo.Runnable(grpcSrv),
-		leo.HTTP(httpSrv),
+		leo.Runnable(httpSrv),
 	)
 	// 运行app
 	if err := app.Run(ctx); err != nil {
@@ -60,7 +60,7 @@ func main() {
 	}
 }
 
-func Time(c *gin.Context) {
+func Time(c *gonicgin.Context) {
 	c.String(http.StatusOK, time.Now().Format(time.RFC3339))
 }
 

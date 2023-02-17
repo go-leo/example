@@ -4,12 +4,12 @@ import (
 	"context"
 	"net/url"
 
-	"github.com/gin-gonic/gin"
+	gonicgin "github.com/gin-gonic/gin"
+	"github.com/go-leo/gin"
 	leogrpc "github.com/go-leo/grpc"
 	"github.com/go-leo/grpcproxy"
 	"github.com/go-leo/leo/v2"
 	"github.com/go-leo/leo/v2/global"
-	leohttp "github.com/go-leo/leo/v2/http"
 	"github.com/go-leo/leo/v2/log"
 	"github.com/go-leo/leo/v2/log/zap"
 	"github.com/go-leo/leo/v2/registry/factory"
@@ -47,8 +47,8 @@ func main() {
 	}
 	defer conn.Close()
 
-	engine := grpcproxy.AppendRoutes(gin.New(), helloworld.GreeterProxyRoutes(helloworld.NewGreeterClient(conn))...)
-	httpSrv, err := leohttp.NewServer(0, engine, leohttp.Registrar(registrar))
+	engine := grpcproxy.AppendRoutes(gonicgin.New(), helloworld.GreeterProxyRoutes(helloworld.NewGreeterClient(conn))...)
+	httpSrv, err := gin.NewServer(0, engine, gin.Registrar(registrar))
 	if err != nil {
 		panic(err)
 	}
@@ -57,7 +57,7 @@ func main() {
 		leo.Name("grpcproxydemo"),
 		leo.Logger(logger),
 		leo.Runnable(grpcSrv),
-		leo.HTTP(httpSrv),
+		leo.Runnable(httpSrv),
 	)
 	err = app.Run(ctx)
 	if err != nil {
