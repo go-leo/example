@@ -4,7 +4,7 @@ import (
 	"context"
 	"fmt"
 
-	leo_cobra "github.com/go-leo/leo-cobra"
+	"github.com/go-leo/cobra"
 	"github.com/go-leo/leo/v2"
 	"github.com/go-leo/leo/v2/global"
 	spf13cobra "github.com/spf13/cobra"
@@ -28,7 +28,7 @@ func main() {
 		},
 	}
 	root.AddCommand(version)
-	command := leo_cobra.New(root)
+	command := cobra.New(root)
 
 	app := leo.NewApp(
 		leo.Name("cobrademo"),

@@ -3,7 +3,7 @@ package main
 import (
 	"context"
 
-	leo_cron "github.com/go-leo/leo-cron"
+	"github.com/go-leo/cron"
 	"github.com/go-leo/leo/v2"
 	"github.com/go-leo/leo/v2/global"
 	"github.com/go-leo/leo/v2/log"
@@ -15,8 +15,8 @@ func main() {
 	ctx := context.Background()
 	global.SetLogger(zap.New(zap.LevelAdapt(log.Debug), zap.Console(true), zap.JSON()))
 	// 初始化app
-	task := leo_cron.New([]*leo_cron.Job{Print()},
-		leo_cron.Middleware(
+	task := cron.New([]*cron.Job{Print()},
+		cron.Middleware(
 			cronmiddleware.CronMiddleware(global.Logger().Clone()),
 			cronmiddleware.SkipIfStillRunning(global.Logger().Clone()),
 		))
@@ -32,8 +32,8 @@ func main() {
 	}
 }
 
-func Print() *leo_cron.Job {
-	return leo_cron.NewJob("print", "@every 5s", func() {
+func Print() *cron.Job {
+	return cron.NewJob("print", "@every 5s", func() {
 		global.Logger().Info("this is from cron")
 	})
 }

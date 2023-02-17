@@ -4,12 +4,12 @@ go 1.18
 
 require (
 	github.com/Shopify/sarama v1.38.1
-	github.com/ThreeDotsLabs/watermill v1.2.0-rc.11
+	github.com/ThreeDotsLabs/watermill v1.2.0
 	github.com/ThreeDotsLabs/watermill-kafka/v2 v2.2.2
 	github.com/gin-gonic/gin v1.8.1
 	github.com/go-leo/gors v1.1.2
 	github.com/go-leo/grpcproxy v1.0.0
-	github.com/go-leo/leo/v2 v2.0.0-20230209062037-c32b3a068077
+	github.com/go-leo/leo/v2 v2.0.0-20230217024017-013e7541904b
 	github.com/go-leo/stringx v1.0.1
 	github.com/shirou/gopsutil/v3 v3.22.7
 	github.com/spf13/cobra v1.6.1
@@ -24,7 +24,7 @@ require (
 	github.com/benbjohnson/clock v1.3.0 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/buger/jsonparser v1.1.1 // indirect
-	github.com/cespare/xxhash/v2 v2.1.2 // indirect
+	github.com/cespare/xxhash/v2 v2.2.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/derekparker/trie v0.0.0-20200317170641-1fdf38b7b0e9 // indirect
 	github.com/eapache/go-resiliency v1.3.0 // indirect
@@ -35,11 +35,15 @@ require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-errors/errors v1.4.2 // indirect
 	github.com/go-leo/backoffx v1.0.0 // indirect
+	github.com/go-leo/cobra v0.0.0-20230216084627-35d0da35f948 // indirect
+	github.com/go-leo/cron v0.0.0-20230217061257-99f0330ce4f8 // indirect
 	github.com/go-leo/errorx v1.0.0 // indirect
+	github.com/go-leo/gox v0.0.0-20230217060750-a9cf1b237ddf // indirect
 	github.com/go-leo/leo-cobra v0.0.0-20230209061620-866cb95c82f3 // indirect
 	github.com/go-leo/leo-cron v0.0.0-20230209062849-4cac9ad13f12 // indirect
 	github.com/go-leo/netx v1.1.1 // indirect
 	github.com/go-leo/osx v1.1.0 // indirect
+	github.com/go-leo/pubsub v0.0.0-20230217061156-7510e7611df2 // indirect
 	github.com/go-leo/slicex v1.0.14 // indirect
 	github.com/go-leo/syncx v0.0.0-20230113082314-5853d4ad28c9 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
@@ -77,7 +81,7 @@ require (
 	github.com/lufia/plan9stats v0.0.0-20220517141722-cf486979b281 // indirect
 	github.com/mattn/go-colorable v0.1.12 // indirect
 	github.com/mattn/go-isatty v0.0.16 // indirect
-	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
+	github.com/matttproud/golang_protobuf_extensions v1.0.4 // indirect
 	github.com/mitchellh/go-homedir v1.1.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
@@ -89,10 +93,10 @@ require (
 	github.com/pierrec/lz4/v4 v4.1.17 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/power-devops/perfstat v0.0.0-20220216144756-c35f1ee13d7c // indirect
-	github.com/prometheus/client_golang v1.13.0 // indirect
-	github.com/prometheus/client_model v0.2.0 // indirect
-	github.com/prometheus/common v0.37.0 // indirect
-	github.com/prometheus/procfs v0.8.0 // indirect
+	github.com/prometheus/client_golang v1.14.0 // indirect
+	github.com/prometheus/client_model v0.3.0 // indirect
+	github.com/prometheus/common v0.39.0 // indirect
+	github.com/prometheus/procfs v0.9.0 // indirect
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
@@ -110,12 +114,12 @@ require (
 	go.uber.org/atomic v1.10.0 // indirect
 	go.uber.org/multierr v1.8.0 // indirect
 	go.uber.org/zap v1.22.0 // indirect
-	golang.org/x/crypto v0.3.0 // indirect
-	golang.org/x/exp v0.0.0-20230111222715-75897c7a292a // indirect
-	golang.org/x/net v0.5.0 // indirect
+	golang.org/x/crypto v0.6.0 // indirect
+	golang.org/x/exp v0.0.0-20230213192124-5e25df0256eb // indirect
+	golang.org/x/net v0.6.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
-	golang.org/x/sys v0.4.0 // indirect
-	golang.org/x/text v0.6.0 // indirect
+	golang.org/x/sys v0.5.0 // indirect
+	golang.org/x/text v0.7.0 // indirect
 	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
 	google.golang.org/genproto v0.0.0-20221202195650-67e5cbc046fd // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect

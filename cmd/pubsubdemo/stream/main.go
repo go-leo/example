@@ -12,7 +12,7 @@ import (
 	"github.com/go-leo/leo/v2/global"
 	"github.com/go-leo/leo/v2/log"
 	"github.com/go-leo/leo/v2/log/zap"
-	"github.com/go-leo/leo/v2/pubsub"
+	"github.com/go-leo/pubsub"
 )
 
 func main() {
@@ -22,7 +22,7 @@ func main() {
 	app := leo.NewApp(
 		leo.Name("pubsub stream"),
 		leo.Logger(global.Logger()),
-		leo.PubSub(pubsub.New([]*pubsub.Job{NewJob()})),
+		leo.Runnable(pubsub.New([]*pubsub.Job{NewJob()})),
 	)
 	// 运行app
 	if err := app.Run(ctx); err != nil {
