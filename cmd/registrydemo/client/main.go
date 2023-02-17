@@ -4,7 +4,7 @@ import (
 	"context"
 	"net/url"
 
-	leogrpc "github.com/go-leo/leo/v2/grpc"
+	leogrpc "github.com/go-leo/grpc"
 	"github.com/go-leo/leo/v2/log"
 	"github.com/go-leo/leo/v2/log/zap"
 	middlewarelog "github.com/go-leo/leo/v2/middleware/log"

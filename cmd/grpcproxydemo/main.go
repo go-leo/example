@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
+	"github.com/go-leo/grpc"
 	"github.com/go-leo/grpcproxy"
 	"github.com/go-leo/leo/v2"
-	"github.com/go-leo/leo/v2/grpc"
 	leohttp "github.com/go-leo/leo/v2/http"
 	"github.com/go-leo/leo/v2/log"
 	"github.com/go-leo/leo/v2/log/zap"
@@ -51,7 +51,7 @@ func main() {
 	app := leo.NewApp(
 		leo.Name("grpcproxydemo"),
 		leo.Logger(logger),
-		leo.GRPC(grpcSrv),
+		leo.Runnable(grpcSrv),
 		leo.HTTP(httpSrv),
 	)
 	// 运行app

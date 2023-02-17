@@ -3,8 +3,8 @@ package main
 import (
 	"context"
 
+	"github.com/go-leo/grpc"
 	"github.com/go-leo/leo/v2"
-	"github.com/go-leo/leo/v2/grpc"
 	"github.com/go-leo/leo/v2/log"
 	"github.com/go-leo/leo/v2/log/zap"
 
@@ -31,7 +31,7 @@ func main() {
 	app := leo.NewApp(
 		leo.Name("grpcdemo"), // 服务名
 		leo.Logger(logger),   // 日志组件
-		leo.GRPC(srv),
+		leo.Runnable(srv),
 	)
 	// 运行app
 	if err := app.Run(ctx); err != nil {

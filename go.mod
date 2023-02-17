@@ -11,12 +11,12 @@ require (
 	github.com/go-leo/cron v0.0.0-20230217061257-99f0330ce4f8
 	github.com/go-leo/gors v1.1.2
 	github.com/go-leo/grpcproxy v1.0.0
-	github.com/go-leo/leo/v2 v2.0.0-20230217024017-013e7541904b
+	github.com/go-leo/leo/v2 v2.0.0-20230217064147-4ff97e1eb062
 	github.com/go-leo/pubsub v0.0.0-20230217061156-7510e7611df2
 	github.com/go-leo/stringx v1.0.1
 	github.com/shirou/gopsutil/v3 v3.22.7
 	github.com/spf13/cobra v1.6.1
-	google.golang.org/grpc v1.51.0
+	google.golang.org/grpc v1.53.0
 	google.golang.org/protobuf v1.28.1
 )
 
@@ -40,6 +40,7 @@ require (
 	github.com/go-leo/backoffx v1.0.0 // indirect
 	github.com/go-leo/errorx v1.0.0 // indirect
 	github.com/go-leo/gox v0.0.0-20230217060750-a9cf1b237ddf // indirect
+	github.com/go-leo/grpc v0.0.0-20230217063922-2ab349072291 // indirect
 	github.com/go-leo/netx v1.1.1 // indirect
 	github.com/go-leo/osx v1.1.0 // indirect
 	github.com/go-leo/slicex v1.0.14 // indirect
@@ -119,7 +120,7 @@ require (
 	golang.org/x/sys v0.5.0 // indirect
 	golang.org/x/text v0.7.0 // indirect
 	golang.org/x/time v0.0.0-20220722155302-e5dcc9cfc0b9 // indirect
-	google.golang.org/genproto v0.0.0-20221202195650-67e5cbc046fd // indirect
+	google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
 	gopkg.in/natefinch/lumberjack.v2 v2.0.0 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
