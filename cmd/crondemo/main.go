@@ -8,18 +8,13 @@ import (
 	"github.com/go-leo/leo/v2/global"
 	"github.com/go-leo/leo/v2/log"
 	"github.com/go-leo/leo/v2/log/zap"
-	cronmiddleware "github.com/go-leo/leo/v2/middleware/cron"
 )
 
 func main() {
 	ctx := context.Background()
 	global.SetLogger(zap.New(zap.LevelAdapt(log.Debug), zap.Console(true), zap.JSON()))
 	// 初始化app
-	task := cron.New([]*cron.Job{Print()},
-		cron.Middleware(
-			cronmiddleware.CronMiddleware(global.Logger().Clone()),
-			cronmiddleware.SkipIfStillRunning(global.Logger().Clone()),
-		))
+	task := cron.New([]*cron.Job{Print()})
 	app := leo.NewApp(
 		leo.Name("crondemo"),
 		// 日志打印

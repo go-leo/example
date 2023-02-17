@@ -7,9 +7,12 @@ require (
 	github.com/ThreeDotsLabs/watermill v1.2.0
 	github.com/ThreeDotsLabs/watermill-kafka/v2 v2.2.2
 	github.com/gin-gonic/gin v1.8.1
+	github.com/go-leo/cobra v0.0.0-20230216084627-35d0da35f948
+	github.com/go-leo/cron v0.0.0-20230217061257-99f0330ce4f8
 	github.com/go-leo/gors v1.1.2
 	github.com/go-leo/grpcproxy v1.0.0
 	github.com/go-leo/leo/v2 v2.0.0-20230217024017-013e7541904b
+	github.com/go-leo/pubsub v0.0.0-20230217061156-7510e7611df2
 	github.com/go-leo/stringx v1.0.1
 	github.com/shirou/gopsutil/v3 v3.22.7
 	github.com/spf13/cobra v1.6.1
@@ -35,15 +38,10 @@ require (
 	github.com/gin-contrib/sse v0.1.0 // indirect
 	github.com/go-errors/errors v1.4.2 // indirect
 	github.com/go-leo/backoffx v1.0.0 // indirect
-	github.com/go-leo/cobra v0.0.0-20230216084627-35d0da35f948 // indirect
-	github.com/go-leo/cron v0.0.0-20230217061257-99f0330ce4f8 // indirect
 	github.com/go-leo/errorx v1.0.0 // indirect
 	github.com/go-leo/gox v0.0.0-20230217060750-a9cf1b237ddf // indirect
-	github.com/go-leo/leo-cobra v0.0.0-20230209061620-866cb95c82f3 // indirect
-	github.com/go-leo/leo-cron v0.0.0-20230209062849-4cac9ad13f12 // indirect
 	github.com/go-leo/netx v1.1.1 // indirect
 	github.com/go-leo/osx v1.1.0 // indirect
-	github.com/go-leo/pubsub v0.0.0-20230217061156-7510e7611df2 // indirect
 	github.com/go-leo/slicex v1.0.14 // indirect
 	github.com/go-leo/syncx v0.0.0-20230113082314-5853d4ad28c9 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
